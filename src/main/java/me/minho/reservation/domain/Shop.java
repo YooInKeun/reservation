@@ -1,10 +1,12 @@
 package me.minho.reservation.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.minho.reservation.domain.request.ShopInfo;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -34,6 +36,7 @@ public class Shop {
     @Column(name = "CLOSE_TIME", nullable = false)
     private LocalDateTime closeTime;
 
+    @Getter
     @Column(name = "RESERVATION_INTERVAL", nullable = false)
     private int interval;
 
@@ -54,5 +57,9 @@ public class Shop {
 
     public ShopInfo summarize() {
         return new ShopInfo(name, contact, address, description, openTime, closeTime);
+    }
+
+    public Timetable createTimetable(List<Reservation> reservationList, int interval) {
+        return null;
     }
 }
